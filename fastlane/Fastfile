@@ -1,14 +1,3 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
@@ -33,7 +22,7 @@ platform :ios do
 
 download_dsyms(app_identifier: bundleid,version: version,build_number: buildnumber)
 
- #upload_dsym_to_apptics(APP_VERSION:"1.0.0", DSYM_FILE_PATH: "#{bundleid}-#{appversion}-#{buildnumber}.dSYM.zip", CONFIG_FILE_PATH:"/Users/jai-13322/Documents/apptics-config.plist",BUILD_VERSION:"2.7.1")
+ upload_dsym_to_apptics(APP_VERSION:"1.0.0", DSYM_FILE_PATH: "#{bundleid}-#{appversion}-#{buildnumber}.dSYM.zip", CONFIG_FILE_PATH:"/Users/jai-13322/Documents/apptics-config.plist",BUILD_VERSION:"2.0.534")
 
 #clean_build_artifacts
   end
