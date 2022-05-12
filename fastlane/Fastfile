@@ -1,0 +1,29 @@
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :apptics do |options|
+  bundleid = options[:bundleid]
+  version = options[:version]
+  appversion = options[:appversion]
+  buildnumber = options[:buildnumber]
+  
+
+  puts bundleid
+  puts version
+  puts appversion
+  puts buildnumber
+
+#download_dsyms(app_identifier:"com.zoho.zmail", build_number:"2.0.532")
+
+download_dsyms(app_identifier: bundleid,version: version,build_number: buildnumber)
+
+ upload_dsym_to_apptics(APP_VERSION:"1.0.0", DSYM_FILE_PATH: "#{bundleid}-#{appversion}-#{buildnumber}.dSYM.zip", CONFIG_FILE_PATH:"/Users/jai-13322/Documents/apptics-config.plist",BUILD_VERSION:"2.0.534")
+
+#clean_build_artifacts
+  end
+end
