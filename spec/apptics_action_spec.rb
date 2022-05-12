@@ -1,3 +1,5 @@
+require "./lib/fastlane/plugin/apptics/actions/apptics_action.rb"
+
 describe Fastlane::Actions::AppticsAction do
   describe '#run' do
     it 'prints a message' do
