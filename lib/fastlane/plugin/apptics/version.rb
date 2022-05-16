@@ -1,5 +1,5 @@
 module Fastlane
   module Apptics
-    VERSION = "0.1.0"
+    VERSION = "1.0.2"
   end
 end
