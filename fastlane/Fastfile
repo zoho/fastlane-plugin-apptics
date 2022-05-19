@@ -9,21 +9,23 @@ platform :ios do
   lane :apptics do |options|
   bundleid = options[:bundleid]
   version = options[:version]
-  appversion = options[:appversion]
   buildnumber = options[:buildnumber]
-  
+  configpath = options[:configpath]
+  mode = options[:mode]
+  platform = options[:platform]
 
   puts bundleid
   puts version
-  puts appversion
   puts buildnumber
+  puts configpath
+  puts mode
+  puts platform
 
-#download_dsyms(app_identifier:"com.zoho.zmail", build_number:"2.0.532")
+
 
 download_dsyms(app_identifier: bundleid,version: version,build_number: buildnumber)
+upload_dsym_to_apptics(APP_VERSION:version,BUNDLE_ID:"#{bundleid}", DSYM_FILE_PATH: "#{bundleid}-#{version}-#{buildnumber}.dSYM.zip",MODE_VALUE:mode, PLATFORM_VALUE:platform ,CONFIG_FILE_PATH:"#{configpath}",BUILD_VERSION:buildnumber)
+clean_build_artifacts
 
- upload_dsym_to_apptics(APP_VERSION:"1.0.0", DSYM_FILE_PATH: "#{bundleid}-#{appversion}-#{buildnumber}.dSYM.zip", CONFIG_FILE_PATH:"/Users/jai-13322/Documents/apptics-config.plist",BUILD_VERSION:"2.0.534")
-
-#clean_build_artifacts
   end
 end
