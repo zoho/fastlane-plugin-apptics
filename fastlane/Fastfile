@@ -1,3 +1,5 @@
+# This file contains the fastlane.tools configuration
+
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
@@ -6,26 +8,25 @@ default_platform(:ios)
 
 platform :ios do
   desc "Description of what the lane does"
-  lane :apptics do |options|
-  bundleid = options[:bundleid]
-  version = options[:version]
-  buildnumber = options[:buildnumber]
-  configpath = options[:configpath]
-  mode = options[:mode]
-  platform = options[:platform]
+  lane :custom_lane do |options|
+    bundleid = options[:bundleid]
+    version = options[:version]
+    buildnumber = options[:buildnumber]
+    configpath = options[:configpath]
+    mode = options[:mode]
+    platform = options[:platform]
 
-  puts bundleid
-  puts version
-  puts buildnumber
-  puts configpath
-  puts mode
-  puts platform
+    puts bundleid
+    puts version
+    puts buildnumber
+    puts configpath
+    puts mode
+    puts platform
 
 
 
-download_dsyms(app_identifier: bundleid,version: version,build_number: buildnumber)
-upload_dsym_to_apptics(APP_VERSION:version,BUNDLE_ID:"#{bundleid}", DSYM_FILE_PATH: "#{bundleid}-#{version}-#{buildnumber}.dSYM.zip",MODE_VALUE:mode, PLATFORM_VALUE:platform ,CONFIG_FILE_PATH:"#{configpath}",BUILD_VERSION:buildnumber)
-clean_build_artifacts
-
+  download_dsyms(app_identifier: bundleid,version: version,build_number: buildnumber)
+  upload_dsym_to_apptics(appversion:version,bundleid:"#{bundleid}", dsymfilepath: "#{bundleid}-#{version}-#{buildnumber}.dSYM.zip",modevalue:mode, platformvalue:platform ,configfilepath:"#{configpath}",buildversion:buildnumber)
+  clean_build_artifacts
   end
 end

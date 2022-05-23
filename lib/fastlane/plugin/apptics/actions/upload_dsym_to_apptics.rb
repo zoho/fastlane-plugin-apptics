@@ -10,14 +10,14 @@ module Fastlane
 
             def self.run(params)
 
-                if params[:APP_VERSION] && params[:MODE_VALUE] && params[:PLATFORM_VALUE] && params[:BUNDLE_ID] && params[:BUILD_VERSION] && params[:DSYM_FILE_PATH] && options_from_info_plist(params[:CONFIG_FILE_PATH]) != nil
-                    dsym_zip_file = params[:DSYM_FILE_PATH]
-                    app_version = params[:APP_VERSION]
-                    build_version = params[:BUILD_VERSION]
-                    mode_value = params[:MODE_VALUE]
-                    platform_value = params[:PLATFORM_VALUE]
-                    bundleid = params[:BUNDLE_ID]
-                    config_file = options_from_info_plist(params[:CONFIG_FILE_PATH])
+                if params[:appversion] && params[:modevalue] && params[:platformvalue] && params[:bundleid] && params[:buildversion] && params[:dsymfilepath] && options_from_info_plist(params[:configfilepath]) != nil
+                    dsym_zip_file = params[:dsymfilepath]
+                    app_version = params[:appversion]
+                    build_version = params[:buildversion]
+                    mode_value = params[:modevalue]
+                    platform_value = params[:platformvalue]
+                    bundleid = params[:bundleid]
+                    config_file = options_from_info_plist(params[:configfilepath])
                     upload(config_file, dsym_zip_file,app_version,build_version,mode_value,platform_value,bundleid)
 
                 end
@@ -116,52 +116,52 @@ module Fastlane
 
                 # Below a few examples
                 [
-                FastlaneCore::ConfigItem.new(key: :APP_VERSION,
-                                             env_name: "APP_VERSION", # The name of the environment variable
-                                             description: "App Version needed for UploadDsymToAppticsAction", # a short description of this parameter
+                FastlaneCore::ConfigItem.new(key: :appversion,
+                                             env_name: "appversion", # The name of the environment variable
+                                             description: "App Version Token for UploadDsymToAppticsAction", # a short description of this parameter
                                              verify_block: proc do |value|
                                              UI.user_error!("No App Version for UploadDsymToAppticsAction given") unless (value and not value.empty?)
                                              end),
 
-                                             FastlaneCore::ConfigItem.new(key: :DSYM_FILE_PATH,
-                                                                          env_name: "DSYM_FILE_PATH", # The name of the environment variable
-                                                                          description: "DSYM path for UploadDsymToAppticsAction", # a short description of this parameter
+                                             FastlaneCore::ConfigItem.new(key: :dsymfilepath,
+                                                                          env_name: "dsymfilepath", # The name of the environment variable
+                                                                          description: "API Token for UploadDsymToAppticsAction", # a short description of this parameter
                                                                           verify_block: proc do |value|
-                                                                          UI.user_error!("No DSYM path for UploadDsymToAppticsAction given, pass using `api_token: 'token'`") unless (value and not value.empty?)
+                                                                          UI.user_error!("No API token for UploadDsymToAppticsAction given, pass using `api_token: 'token'`") unless (value and not value.empty?)
                                                                           # UI.user_error!("Couldn't find file at path '#{value}'") unless File.exist?(value)
                                                                           end),
-                                                                          FastlaneCore::ConfigItem.new(key: :MODE_VALUE,
-                                                                                                       env_name: "MODE_VALUE", # The name of the environment variable
+                                                                          FastlaneCore::ConfigItem.new(key: :modevalue,
+                                                                                                       env_name: "modevalue", # The name of the environment variable
                                                                                                        description: "mode for UploadDsymToAppticsAction", # a short description of this parameter
                                                                                                        verify_block: proc do |value|
                                                                                                        #UI.user_error!("mode for UploadDsymToAppticsAction given, pass using `api_token: 'token'`") unless (value and not value.empty?)
                                                                                                        # UI.user_error!("Couldn't find file at path '#{value}'") unless File.exist?(value)
                                                                                                        end),
-                                                                          FastlaneCore::ConfigItem.new(key: :PLATFORM_VALUE,
-                                                                                                      env_name: "PLATFORM_VALUE", # The name of the environment variable
+                                                                          FastlaneCore::ConfigItem.new(key: :platformvalue,
+                                                                                                      env_name: "platformvalue", # The name of the environment variable
                                                                                                       description: "platform for UploadDsymToAppticsAction", # a short description of this parameter
                                                                                                       verify_block: proc do |value|
                                                                                                       #UI.user_error!("mode for UploadDsymToAppticsAction given, pass using `api_token: 'token'`") unless (value and not value.empty?)
                                                                                                       # UI.user_error!("Couldn't find file at path '#{value}'") unless File.exist?(value)
                                                                                                     end),
-                                                                                                    FastlaneCore::ConfigItem.new(key: :BUNDLE_ID,
-                                                                                                                                env_name: "BUNDLE_ID", # The name of the environment variable
+                                                                                                    FastlaneCore::ConfigItem.new(key: :bundleid,
+                                                                                                                                env_name: "bundleid", # The name of the environment variable
                                                                                                                                 description: "bundleid for UploadDsymToAppticsAction", # a short description of this parameter
                                                                                                                                 verify_block: proc do |value|
                                                                                                                                 #UI.user_error!("mode for UploadDsymToAppticsAction given, pass using `api_token: 'token'`") unless (value and not value.empty?)
                                                                                                                                 # UI.user_error!("Couldn't find file at path '#{value}'") unless File.exist?(value)
                                                                                                                               end),
 
-                                                                          FastlaneCore::ConfigItem.new(key: :BUILD_VERSION,
-                                                                                                       env_name: "BUILD_VERSION]", # The name of the environment variable
+                                                                          FastlaneCore::ConfigItem.new(key: :buildversion,
+                                                                                                       env_name: "buildversion]", # The name of the environment variable
                                                                                                        description: "Build version for UploadDsymToAppticsAction", # a short description of this parameter
                                                                                                        verify_block: proc do |value|
                                                                                                        UI.user_error!("No Build version for UploadDsymToAppticsAction given") unless (value and not value.empty?)
                                                                                                        # UI.user_error!("Couldn't find file at path '#{value}'") unless File.exist?(value)
                                                                                                        end),
 
-                                                                                                       FastlaneCore::ConfigItem.new(key: :CONFIG_FILE_PATH,
-                                                                                                                                    env_name: "CONFIG_FILE_PATH", # The name of the environment variable
+                                                                                                       FastlaneCore::ConfigItem.new(key: :configfilepath,
+                                                                                                                                    env_name: "configfilepath", # The name of the environment variable
                                                                                                                                     description: "Config File for UploadDsymToAppticsAction", # a short description of this parameter
                                                                                                                                     verify_block: proc do |value|
                                                                                                                                     UI.user_error!("No Config File for UploadDsymToAppticsAction given") unless (value and not value.empty?)
