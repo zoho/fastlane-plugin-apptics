@@ -99,7 +99,7 @@ Try running the lane in the CLT using 
 ```bash
 fastlane custom_lane or fastlane lane_name
 ```
-## Lane Setup Using CLT:
+## Lane Setup Using CLT
 Add the below to the Fastlane/Fastfile.
 
 ```bash
