@@ -69,7 +69,7 @@ upload_dsym_to_apptics(appversion:"",bundleid:"", dsymfilepath: "",modevalue:"",
 * bundleid - The bundle id for the dSYMs that you want to upload.
 * dsymfilepath - Path to the dSYM file or zip to upload.
 * modevalue - development or release (0 or 1).
-* platformvalue - The app platform for the dSYMs that you want to upload (iOS, macOS…).
+* platformvalue - The app platform for the dSYMs that you want to upload (iOS,watchOS,macOS…).
 * configfilepath - Path to the Config file (<PROJECT_PATH>/apptics-config.plist )
 
 ## Clean_build_artifacts
